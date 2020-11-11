@@ -66,7 +66,14 @@ public class CSGOp {
         return wPolys;
     }
 
-    private static WB_Polygon toWB_Polygon(Polygon poly) {
+    public static List<Vector3d> toCSGPoints(WB_Polygon wPoly){
+        List<Vector3d>vector3ds = new ArrayList<>();
+        for (WB_Coord c:wPoly.getPoints().toList()){
+            vector3ds.add(toVector3d(c));
+        }
+        return vector3ds;
+    }
+    public static WB_Polygon toWB_Polygon(Polygon poly) {
         List<Vertex> vers = poly.vertices;
         List<WB_Point> pts = new ArrayList<>();
         for (Vertex ver : vers) {

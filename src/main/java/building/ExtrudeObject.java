@@ -1,6 +1,7 @@
 package building;
 
 import processing.opengl.PGraphicsOpenGL;
+import util.Display;
 import wblut.geom.*;
 import wblut.hemesh.HEC_FromPolygons;
 import wblut.hemesh.HEM_Extrude;
@@ -16,7 +17,7 @@ import java.util.List;
 /**
  * class to record base, top, walls, height of an extrude volume
  * 
- * @author lee
+ * @author JianZ
  *
  */
 public class ExtrudeObject implements Display {
@@ -113,11 +114,11 @@ public class ExtrudeObject implements Display {
 	 * @return 1: same -1: reverse 0: other
 	 */
 	private int sameDir(WB_Vector v1, WB_Vector v2) {
-		double threshhold = WB_Epsilon.EPSILONANGLE;
+		double threshold = WB_Epsilon.EPSILONANGLE;
 		double angle = v1.getAngle(v2);
-		if (angle < threshhold)
+		if (angle < threshold)
 			return 1;
-		if (Math.PI - angle < threshhold)
+		if (Math.PI - angle < threshold)
 			return -1;
 		return 0;
 	}
@@ -144,7 +145,6 @@ public class ExtrudeObject implements Display {
 		render.drawPolygonEdges(top);
 		app.fill(RICE);
 		render.drawPolygonEdges(wallPolys);
-
 	}
 
 }

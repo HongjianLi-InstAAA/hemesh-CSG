@@ -95,7 +95,7 @@ public interface Display {
 
 	}
 
-	default int RGBtoInt(int...rgba) {
+	default int RGBtoInt(int... rgba) {
 		switch (rgba.length){
 			case 1:
 				return new Color(rgba[0]).getRGB();

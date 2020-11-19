@@ -16,16 +16,26 @@ import java.util.List;
 public class Geometry {
     public List<double[]> verts;
     public List<int[]> faces;
+    public List<String>colors;
+    public List<Integer>col_FaceNum;
 
     public Geometry() {
         verts = new ArrayList<double[]>();
         faces = new ArrayList<int[]>();
+        colors = new ArrayList<>();
+        col_FaceNum = new ArrayList<>();
     }
 
-    public void addMesh(HE_Mesh mesh){
+    public void addMesh(HE_Mesh mesh, int color){
+        //add color
+        colors.add(""+color);
+
+        //add vertices
         List<HE_Vertex>vertices = mesh.getVertices();
         for (HE_Vertex v:vertices)
             addVerts(v);
+
+        //add faces
         for (HE_Face f:mesh.getFaces()){
             List<HE_Vertex>faceVertices = f.getFaceVertices();
             int[]versID = new int[faceVertices.size()];
@@ -34,6 +44,9 @@ public class Geometry {
             }
             faces.add(versID);
         }
+
+        //add number of faces with this color
+        col_FaceNum.add(mesh.getNumberOfFaces());
     }
 
     public void addVerts(WB_Coord pt) {

@@ -1,5 +1,4 @@
 import Guo_Cam.CameraController;
-import building.MeshClassifier;
 import eu.mihosoft.vrl.v3d.CSG;
 import eu.mihosoft.vrl.v3d.Cube;
 import eu.mihosoft.vrl.v3d.Transform;
@@ -18,7 +17,6 @@ public class TestJCSG extends PApplet{
     WB_Render3D render;
     HE_Mesh mesh;
     CSG cube, cube2;
-    MeshClassifier manager;
     List<CSG> objects;
 
     public static void main(String[] args) {
@@ -45,7 +43,6 @@ public class TestJCSG extends PApplet{
         for (CSG c : objects)
             union = union.union(c);
         mesh = CSGOp.toHE_Mesh(union);
-        manager = new MeshClassifier(mesh);
         System.out.println("    faceCount: " + mesh.getNumberOfFaces());
     }
 
@@ -54,7 +51,7 @@ public class TestJCSG extends PApplet{
         // TODO Auto-generated method stub
         background(255);
         cam.drawSystem(100);
-        manager.draw(render);
+        render.drawEdges(mesh);
     }
 
     double step = 0.2;
